@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunch Menu – Chinese</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #111111;
+    --white: #f5f2ed;
+    --off-white: #ede9e2;
+    --accent: #111111;
+    --light-line: #d0cbc2;
+    --page-w: 560px;
+    --page-h: 1120px;
+    --pad: 48px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #c8c2b8;
+    font-family: 'Barlow Condensed', 'Noto Sans SC', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding: 40px 20px;
+  }
+
+  /* ── PAGE SHELL ── */
+  .page {
+    width: var(--page-w);
+    min-height: var(--page-h);
+    background: var(--white);
+    position: relative;
+    overflow: visible;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.22);
+  }
+
+  /* ══════════════════════════════════
+     COVER PAGE
+  ══════════════════════════════════ */
+  .cover {
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--pad);
+    height: var(--page-h);
+  }
+
+  .cover-top {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cover-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    color: rgba(17,17,17,0.4);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .cover-lunch {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 110px;
+    line-height: 0.88;
+    color: var(--black);
+    letter-spacing: 0.01em;
+  }
+
+  .cover-menu-zh {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 900;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--black);
+    letter-spacing: -0.01em;
+    margin-top: 12px;
+  }
+
+  .cover-divider {
+    width: 48px;
+    height: 2px;
+    background: rgba(17,17,17,0.2);
+    margin: 28px 0;
+  }
+
+  .cover-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    color: rgba(17,17,17,0.4);
+    text-transform: uppercase;
+  }
+
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .cover-restaurant {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(17,17,17,0.35);
+  }
+
+  .cover-note-zh {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    color: rgba(17,17,17,0.35);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .logo-placeholder {
+    width: 80px;
+    height: 80px;
+    border: 1.5px dashed rgba(17,17,17,0.2);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: rgba(17,17,17,0.25);
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* ══════════════════════════════════
+     CONTENT PAGES
+  ══════════════════════════════════ */
+  .content-page {
+    padding: var(--pad) var(--pad) 36px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Section header */
+  .section-header {
+    margin-bottom: 28px;
+    padding-bottom: 0;
+  }
+
+  .section-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .section-title-zh {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 900;
+    font-size: 56px;
+    line-height: 0.9;
+    color: var(--black);
+    letter-spacing: -0.01em;
+  }
+
+  .section-title-en {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    line-height: 0.9;
+    color: var(--black);
+    letter-spacing: 0.01em;
+  }
+
+  .section-rule {
+    width: 100%;
+    height: 1.5px;
+    background: var(--black);
+    margin-top: 18px;
+  }
+
+  /* Gluten free note */
+  .gf-note {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(17,17,17,0.45);
+    margin-bottom: 20px;
+    margin-top: -4px;
+  }
+
+  /* Dish row */
+  .dish {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .dish-info { flex: 1; }
+
+  .dish-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 3px;
+  }
+
+  .dish-name-zh {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 700;
+    font-size: 14.5px;
+    color: var(--black);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  .dish-name-en {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: rgba(17,17,17,0.45);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  .dish-tags {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    color: rgba(17,17,17,0.4);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .dish-desc {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 300;
+    font-size: 10.5px;
+    color: rgba(17,17,17,0.62);
+    line-height: 1.65;
+    letter-spacing: 0.03em;
+    margin-top: 3px;
+    max-width: 380px;
+  }
+
+  .dish-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--black);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+
+  /* Sub-section (Salads, Mains, Soft Drinks — same weight as main categories) */
+  .sub-section {
+    margin-top: 28px;
+    margin-bottom: 0;
+  }
+
+  .sub-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+  }
+
+  .sub-title-zh {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 900;
+    font-size: 56px;
+    color: var(--black);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+  }
+
+  .sub-title-en {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    color: var(--black);
+    letter-spacing: 0.01em;
+    line-height: 0.9;
+  }
+
+  .sub-rule {
+    width: 100%;
+    height: 1.5px;
+    background: var(--black);
+    margin-top: 18px;
+    margin-bottom: 20px;
+  }
+
+  /* Footer legend */
+  .footer-legend {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid var(--light-line);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .legend-item {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    color: rgba(17,17,17,0.4);
+    text-transform: uppercase;
+  }
+
+  /* Drinks: simple list item */
+  .drink-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    gap: 16px;
+  }
+
+  .drink-info { flex: 1; }
+
+  .drink-name-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
+  }
+
+  .drink-name-zh {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--black);
+  }
+
+  .drink-name-en {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: rgba(17,17,17,0.45);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .drink-sub {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 300;
+    font-size: 10px;
+    color: rgba(17,17,17,0.5);
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+  }
+
+  .drink-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--black);
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+
+  @media print {
+    body { background: white; padding: 0; gap: 0; }
+    .page { box-shadow: none; page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     PAGE 1 — COVER
+════════════════════════════════════════ -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="cover-lunch">LUNCH</div>
+    <div class="cover-menu-zh">午餐菜单</div>
+    <div class="cover-divider"></div>
+    <div class="cover-sub">Restaurant Pizzeria</div>
+  </div>
+  <div class="cover-bottom">
+    <div></div>
+    <div class="cover-note-zh">
+      如需了解过敏原信息<br>请告知我们的工作人员
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 2 — PASTA / SALADS / MAINS / SALADS / MAINS
+════════════════════════════════════════ -->
+<div class="page content-page">
+  <div class="section-header">
+    <div class="section-title-row"><span class="section-title-zh">意面</span><span class="section-title-en">PASTA</span></div>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="gf-note">无麸质意面加价 +$5 &nbsp;·&nbsp; Gluten Free Pasta +$5</div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">番茄罗勒意面</span>
+        <span class="dish-name-en">SPAGHETTI AL POMODORO</span>
+        <span class="dish-tags">(V)</span>
+      </div>
+      <div class="dish-desc">新鲜番茄酱、罗勒、帕尔玛干酪</div>
+    </div>
+    <div class="dish-price">25</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">卡邦纳拉意面</span>
+        <span class="dish-name-en">SPAGHETTI CARBONARA</span>
+      </div>
+      <div class="dish-desc">鸡蛋奶油酱、佩科里诺奶酪、香脆猪颊肉、现磨黑胡椒</div>
+    </div>
+    <div class="dish-price">26</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">四种奶酪马铃薯团子</span>
+        <span class="dish-name-en">GNOCCHI QUATTRO FORMAGGI</span>
+        <span class="dish-tags">(V)</span>
+      </div>
+      <div class="dish-desc">软糯马铃薯团子、戈尔贡佐拉、帕尔玛干酪、普罗沃洛内与佩科里诺四味奶酪浓郁酱汁</div>
+    </div>
+    <div class="dish-price">26</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">博洛尼亚肉酱贝壳面</span>
+        <span class="dish-name-en">CAVATELLI ALLA BOLOGNESE</span>
+      </div>
+      <div class="dish-desc">贝壳面配慢炖牛肉拉古酱与浓郁那不勒斯番茄底，顶部撒帕尔玛干酪碎</div>
+    </div>
+    <div class="dish-price">25</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">蛤蜊扁面</span>
+        <span class="dish-name-en">LINGUINE ALLE VONGOLE</span>
+        <span class="dish-tags">(DF)</span>
+      </div>
+      <div class="dish-desc">扁面配鲜嫩蛤蜊、樱桃番茄、新鲜欧芹、白葡萄酒酱汁</div>
+    </div>
+    <div class="dish-price">28</div>
+  </div>
+
+  <!-- SALADS -->
+  <div class="sub-section">
+    <div class="sub-title-row">
+      <span class="sub-title-zh">沙拉</span>
+      <span class="sub-title-en">SALADS</span>
+    </div>
+    <div class="sub-rule"></div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">布拉塔卡布里沙拉</span>
+        <span class="dish-name-en">BURRATA CAPRESE</span>
+        <span class="dish-tags">(V, GF)</span>
+      </div>
+      <div class="dish-desc">意大利布拉塔奶酪、芝麻菜、樱桃番茄、西葫芦奶油、意式香醋汁</div>
+    </div>
+    <div class="dish-price">22.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">大虾沙拉</span>
+        <span class="dish-name-en">PRAWNS SALAD</span>
+        <span class="dish-tags">(GF)</span>
+      </div>
+      <div class="dish-desc">本地鲜虾、混合生菜、番茄、藜麦、胡萝卜、清爽酸奶酱</div>
+    </div>
+    <div class="dish-price">25.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">鸡肉沙拉</span>
+        <span class="dish-name-en">CHICKEN SALAD</span>
+        <span class="dish-tags">(GF)</span>
+      </div>
+      <div class="dish-desc">混合生菜、嫩鸡肉、橄榄、红椒酱、意式香醋汁、帕尔玛干酪片</div>
+    </div>
+    <div class="dish-price">22.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">纯素田园沙拉</span>
+        <span class="dish-name-en">LA VEGANA</span>
+        <span class="dish-tags">(VG, GF)</span>
+      </div>
+      <div class="dish-desc">混合生菜、彩色藜麦、芹菜根酱、蘑菇、炸花椰菜、杏仁片</div>
+    </div>
+    <div class="dish-price">22.5</div>
+  </div>
+
+  <!-- MAINS -->
+  <div class="sub-section">
+    <div class="sub-title-row">
+      <span class="sub-title-zh">主菜</span>
+      <span class="sub-title-en">MAINS</span>
+    </div>
+    <div class="sub-rule"></div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">意式千层面</span>
+        <span class="dish-name-en">LASAGNA</span>
+      </div>
+      <div class="dish-desc">传统多层面片、慢炖牛肉拉古酱、浓郁白酱</div>
+    </div>
+    <div class="dish-price">26.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">猎人风味鸡腿</span>
+        <span class="dish-name-en">POLLO ALLA CACCIATORA</span>
+        <span class="dish-tags">(DF)</span>
+      </div>
+      <div class="dish-desc">红酒番茄酱焖鸡腿、樱桃番茄、橄榄、刺山柑，配自制佛卡夏面包</div>
+    </div>
+    <div class="dish-price">26.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">炸鱿鱼大虾</span>
+        <span class="dish-name-en">CALAMARI &amp; PRAWNS FRITTURA</span>
+        <span class="dish-tags">(DF, GF)</span>
+      </div>
+      <div class="dish-desc">香脆炸鱿鱼与大虾，配薯条、沙拉及蒜泥蛋黄酱</div>
+    </div>
+    <div class="dish-price">26.5</div>
+  </div>
+
+  <div class="footer-legend">
+    <span class="legend-item">无麸质 (GF)</span>
+    <span class="legend-item">素食 (V)</span>
+    <span class="legend-item">纯素 (VG)</span>
+    <span class="legend-item">无乳制品 (DF)</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 3 — PIZZA
+════════════════════════════════════════ -->
+<div class="page content-page">
+  <div class="section-header">
+    <div class="section-title-row"><span class="section-title-zh">比萨</span><span class="section-title-en">PIZZA</span></div>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="gf-note">无麸质面团加价 +$8 &nbsp;·&nbsp; Gluten Free Base +$8</div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">玛格丽特</span>
+        <span class="dish-name-en">MARGHERITA</span>
+        <span class="dish-tags">(V)</span>
+      </div>
+      <div class="dish-desc">圣马扎诺番茄、马苏里拉奶酪、新鲜罗勒、特级初榨橄榄油</div>
+    </div>
+    <div class="dish-price">26.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">水牛奶酪比萨</span>
+        <span class="dish-name-en">BUFALINA</span>
+      </div>
+      <div class="dish-desc">圣马扎诺番茄、新鲜水牛马苏里拉奶酪、意式生火腿、樱桃番茄、罗勒、特级初榨橄榄油</div>
+    </div>
+    <div class="dish-price">36</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">随心比萨</span>
+        <span class="dish-name-en">CAPRICCIOSA</span>
+      </div>
+      <div class="dish-desc">圣马扎诺番茄、马苏里拉奶酪、火腿、蘑菇、朝鲜蓟、橄榄</div>
+    </div>
+    <div class="dish-price">30.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">蔬菜比萨 2.0</span>
+        <span class="dish-name-en">VEGETARIANA 2.0</span>
+        <span class="dish-tags">(V)</span>
+      </div>
+      <div class="dish-desc">西葫芦奶油底酱、马苏里拉奶酪、炸茄子、烤红椒</div>
+    </div>
+    <div class="dish-price">31.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">撒丁岛</span>
+        <span class="dish-name-en">SARDEGNA</span>
+        <span class="dish-tags">(VG)</span>
+      </div>
+      <div class="dish-desc">圣马扎诺番茄、纯素马苏里拉、樱桃番茄、朝鲜蓟、牛至、罗勒</div>
+    </div>
+    <div class="dish-price">29.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">翁布里亚</span>
+        <span class="dish-name-en">UMBRIA</span>
+        <span class="dish-tags">(VG)</span>
+      </div>
+      <div class="dish-desc">纯素马苏里拉、南瓜泥、蘑菇、核桃、松露奶油</div>
+    </div>
+    <div class="dish-price">29.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">那不勒斯风情</span>
+        <span class="dish-name-en">NAPULÉ</span>
+      </div>
+      <div class="dish-desc">马苏里拉奶酪、烟熏斯卡莫扎奶酪、温和萨拉米、西兰花苗</div>
+    </div>
+    <div class="dish-price">34.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">魔鬼比萨</span>
+        <span class="dish-name-en">DIAVOLA</span>
+      </div>
+      <div class="dish-desc">圣马扎诺番茄、马苏里拉奶酪、卡拉布里亚辣味萨拉米、焦糖洋葱、辣肠酱</div>
+    </div>
+    <div class="dish-price">31.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">达芬奇</span>
+        <span class="dish-name-en">LEONARDO DA VINCI</span>
+      </div>
+      <div class="dish-desc">圣马扎诺番茄、马苏里拉奶酪、意式生火腿、芝麻菜、帕尔玛干酪片、特级初榨橄榄油</div>
+    </div>
+    <div class="dish-price">34.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">莫尔塔扎</span>
+        <span class="dish-name-en">MORTAZZA</span>
+      </div>
+      <div class="dish-desc">马苏里拉奶酪、意式博洛尼亚香肠、风干番茄、开心果布拉塔奶酪</div>
+    </div>
+    <div class="dish-price">35</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">教父</span>
+        <span class="dish-name-en">IL PADRINO (THE GODFATHER)</span>
+      </div>
+      <div class="dish-desc">圣马扎诺番茄、马苏里拉奶酪、索普雷萨萨拉米、芝麻菜、樱桃番茄、布拉塔奶酪</div>
+    </div>
+    <div class="dish-price">36.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">四种奶酪配松露</span>
+        <span class="dish-name-en">QUATTRO FORMAGGI E TARTUFO</span>
+        <span class="dish-tags">(V)</span>
+      </div>
+      <div class="dish-desc">马苏里拉、戈尔贡佐拉蓝纹奶酪、烟熏斯卡莫扎、帕尔玛干酪、松露奶油</div>
+    </div>
+    <div class="dish-price">31.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">南瓜奶油比萨</span>
+        <span class="dish-name-en">ZUCCOTTA</span>
+      </div>
+      <div class="dish-desc">南瓜奶油底酱、马苏里拉奶酪、猪脸颊培根、研磨佩科里诺奶酪</div>
+    </div>
+    <div class="dish-price">34</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">海鲜比萨</span>
+        <span class="dish-name-en">FRUTTI DI MARE</span>
+        <span class="dish-tags">(DF)</span>
+      </div>
+      <div class="dish-desc">圣马扎诺蒜香番茄酱、大虾、鱿鱼、贻贝、蛤蜊、新鲜欧芹</div>
+    </div>
+    <div class="dish-price">39.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">意式对折披萨</span>
+        <span class="dish-name-en">CALZONE (FOLDED PIZZA)</span>
+      </div>
+      <div class="dish-desc">圣马扎诺番茄、马苏里拉奶酪、温和萨拉米、瑞可塔奶酪、现磨黑胡椒</div>
+    </div>
+    <div class="dish-price">30.5</div>
+  </div>
+
+  <div class="footer-legend">
+    <span class="legend-item">无麸质 (GF)</span>
+    <span class="legend-item">素食 (V)</span>
+    <span class="legend-item">纯素 (VG)</span>
+    <span class="legend-item">无乳制品 (DF)</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 4 — DOLCE + SOFT DRINKS + SOFT DRINKS
+════════════════════════════════════════ -->
+<div class="page content-page">
+  <div class="section-header">
+    <div class="section-title-row"><span class="section-title-zh">甜品</span><span class="section-title-en">DOLCE</span></div>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">提拉米苏</span>
+        <span class="dish-name-en">TIRAMISÙ</span>
+      </div>
+      <div class="dish-desc">经典意式浓缩咖啡与马斯卡彭奶酪甜点，顶部撒可可粉</div>
+    </div>
+    <div class="dish-price">16.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">西西里卷管饼</span>
+        <span class="dish-name-en">CANNOLO SICILIANO</span>
+      </div>
+      <div class="dish-desc">香脆卷管饼外壳、丝滑瑞可塔奶油馅、巧克力碎、橙皮丁、脆开心果</div>
+    </div>
+    <div class="dish-price">12.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">能多益冰淇淋</span>
+        <span class="dish-name-en">GELATO ALLA NUTELLA</span>
+        <span class="dish-tags">(GF)</span>
+      </div>
+      <div class="dish-desc">自制能多益榛子巧克力冰淇淋、鲜奶油、香脆榛子</div>
+    </div>
+    <div class="dish-price">15.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">柠檬芒果雪葩</span>
+        <span class="dish-name-en">LEMON AND MANGO SORBET</span>
+        <span class="dish-tags">(VG, GF)</span>
+      </div>
+      <div class="dish-desc">清爽纯素雪葩、酸甜红莓果泥</div>
+    </div>
+    <div class="dish-price">15.5</div>
+  </div>
+
+  <!-- SOFT DRINKS -->
+  <div class="sub-section">
+    <div class="sub-title-row">
+      <span class="sub-title-zh">软饮</span>
+      <span class="sub-title-en">SOFT DRINKS</span>
+    </div>
+    <div class="sub-rule"></div>
+  </div>
+
+  <div class="drink-row">
+    <div class="drink-info">
+      <div class="drink-name-row">
+        <span class="drink-name-zh">气泡水 750ml</span>
+        <span class="drink-name-en">SPARKLING WATER 750ml</span>
+      </div>
+    </div>
+    <div class="drink-price">8</div>
+  </div>
+
+  <div class="drink-row">
+    <div class="drink-info">
+      <div class="drink-name-row">
+        <span class="drink-name-zh">圣培露气泡水 1L</span>
+        <span class="drink-name-en">SANPELLEGRINO SPARKLING WATER 1L</span>
+      </div>
+    </div>
+    <div class="drink-price">12</div>
+  </div>
+
+  <div class="drink-row">
+    <div class="drink-info">
+      <div class="drink-name-row">
+        <span class="drink-name-zh">圣培露果味气泡饮</span>
+        <span class="drink-name-en">SAN PELLEGRINO SOFT DRINKS</span>
+      </div>
+      <div class="drink-sub">橙味 · 柠檬味 · 橘子味 · 血橙味</div>
+    </div>
+    <div class="drink-price">5.5</div>
+  </div>
+
+  <div class="drink-row">
+    <div class="drink-info">
+      <div class="drink-name-row">
+        <span class="drink-name-zh">经典汽水</span>
+        <span class="drink-name-en">CLASSIC SOFT DRINKS</span>
+      </div>
+      <div class="drink-sub">可口可乐 · 零度可乐 · LLB</div>
+    </div>
+    <div class="drink-price">5.5</div>
+  </div>
+
+  <div class="drink-row">
+    <div class="drink-info">
+      <div class="drink-name-row">
+        <span class="drink-name-zh">鲜榨果汁</span>
+        <span class="drink-name-en">JUICE</span>
+      </div>
+      <div class="drink-sub">菠萝 · 橙汁 · 苹果 · 芒果</div>
+    </div>
+    <div class="drink-price">5</div>
+  </div>
+
+  <div class="drink-row">
+    <div class="drink-info">
+      <div class="drink-name-row">
+        <span class="drink-name-zh">姜汁啤酒</span>
+        <span class="drink-name-en">GINGER BEER</span>
+      </div>
+    </div>
+    <div class="drink-price">6</div>
+  </div>
+
+  <div class="footer-legend">
+    <span class="legend-item">无麸质 (GF)</span>
+    <span class="legend-item">素食 (V)</span>
+    <span class="legend-item">纯素 (VG)</span>
+    <span class="legend-item">无乳制品 (DF)</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 6 — COFFEE & TEA
+════════════════════════════════════════ -->
+<div class="page content-page">
+  <div class="section-header">
+    <div class="section-title-row">
+      <span class="section-title-zh">咖啡</span>
+      <span class="section-title-en">COFFEE</span>
+    </div>
+    <div class="section-rule"></div>
+  </div>
+
+  <!-- size header -->
+  <div style="display:flex; justify-content:flex-end; margin-bottom:10px; margin-top:-8px;">
+    <div style="font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:rgba(17,17,17,0.4); width:80px; text-align:center;">中杯 · 大杯</div>
+  </div>
+
+  <!-- ESPRESSO -->
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">浓缩咖啡</span>
+        <span class="dish-name-en">ESPRESSO</span>
+      </div>
+      <div class="dish-desc">单份 · 双份 &nbsp;/&nbsp; Single · Double</div>
+    </div>
+    <div style="display:flex; gap:10px; align-items:flex-start; padding-top:1px;">
+      <div class="dish-price">3.5</div>
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; color:rgba(17,17,17,0.35);">/</div>
+      <div class="dish-price">4.5</div>
+    </div>
+  </div>
+
+  <!-- CAPPUCCINO etc -->
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">卡布奇诺 · 拿铁 · 白咖啡</span>
+        <span class="dish-name-en">CAPPUCCINO · LATTE · FLAT WHITE</span>
+      </div>
+      <div class="dish-desc">中杯 · 大杯 &nbsp;/&nbsp; Medium · Large</div>
+    </div>
+    <div style="display:flex; gap:10px; align-items:flex-start; padding-top:1px;">
+      <div class="dish-price">6.5</div>
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; color:rgba(17,17,17,0.35);">/</div>
+      <div class="dish-price">7.5</div>
+    </div>
+  </div>
+
+  <!-- HOT CHOCOLATE -->
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">热巧克力</span>
+        <span class="dish-name-en">HOT CHOCOLATE</span>
+      </div>
+      <div class="dish-desc">中杯 · 大杯 &nbsp;/&nbsp; Medium · Large</div>
+    </div>
+    <div style="display:flex; gap:10px; align-items:flex-start; padding-top:1px;">
+      <div class="dish-price">6.5</div>
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; color:rgba(17,17,17,0.35);">/</div>
+      <div class="dish-price">7.5</div>
+    </div>
+  </div>
+
+  <!-- LONG BLACK -->
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">长黑咖啡</span>
+        <span class="dish-name-en">LONG BLACK</span>
+      </div>
+      <div class="dish-desc">中杯 · 大杯 &nbsp;/&nbsp; Medium · Large</div>
+    </div>
+    <div style="display:flex; gap:10px; align-items:flex-start; padding-top:1px;">
+      <div class="dish-price">5.5</div>
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; color:rgba(17,17,17,0.35);">/</div>
+      <div class="dish-price">6.5</div>
+    </div>
+  </div>
+
+  <!-- CHAI LATTE -->
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-zh">印度香料拿铁</span>
+        <span class="dish-name-en">CHAI LATTE</span>
+      </div>
+      <div class="dish-desc">中杯 · 大杯 &nbsp;/&nbsp; Medium · Large</div>
+    </div>
+    <div style="display:flex; gap:10px; align-items:flex-start; padding-top:1px;">
+      <div class="dish-price">7</div>
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; color:rgba(17,17,17,0.35);">/</div>
+      <div class="dish-price">8</div>
+    </div>
+  </div>
+
+  <!-- ICED COFFEES -->
+  <div class="drink-row">
+    <div class="drink-info">
+      <div class="drink-name-row">
+        <span class="drink-name-zh">冰咖啡</span>
+        <span class="drink-name-en">ICED COFFEES</span>
+      </div>
+      <div class="drink-sub">冰咖 · 冰茶 · 冰摩卡 · 冰拿铁 · 冰巧克力<br>Coffee · Chai · Mocha · Latte · Chocolate</div>
+    </div>
+    <div class="drink-price">9</div>
+  </div>
+
+  <!-- TEA -->
+  <div class="drink-row">
+    <div class="drink-info">
+      <div class="drink-name-row">
+        <span class="drink-name-zh">茶</span>
+        <span class="drink-name-en">TEA</span>
+      </div>
+      <div class="drink-sub">英式早餐茶 · 绿茶 · 薄荷茶 · 洋甘菊茶 · 柠檬草姜茶<br>English Breakfast · Green · Peppermint · Chamomile · Lemongrass &amp; Ginger</div>
+    </div>
+    <div class="drink-price">5</div>
+  </div>
+
+  <!-- Surcharge note -->
+  <div style="margin-top:auto; padding-top:20px; border-top:1px solid var(--light-line);">
+    <div style="font-family:'Noto Sans SC',sans-serif; font-weight:300; font-size:10px; color:rgba(17,17,17,0.4); line-height:2; letter-spacing:0.03em;">
+      周末额外收取 10% 服务费 &nbsp;·&nbsp; 10% surcharge on Weekends<br>
+      公共假日额外收取 15% 服务费 &nbsp;·&nbsp; 15% surcharge on Public Holidays
+    </div>
+  </div>
+</div>
+<!-- ══════════════════════════════════════
+     PAGE 5 — RESTAURANT INFO
+════════════════════════════════════════ -->
+<div class="page cover">
+  <div class="cover-top">
+    <div style="height:140px;"></div>
+    <div class="cover-divider"></div>
+    <div class="cover-sub">Restaurant Pizzeria</div>
+  </div>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:28px; padding: 20px 0;">
+
+    <div style="display:flex; flex-direction:column; gap:6px;">
+      <div style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:rgba(17,17,17,0.4);">地址 · Location</div>
+      <div style="font-family:'Noto Sans SC',sans-serif; font-weight:500; font-size:15px; color:var(--black); line-height:1.6;">The Pier · 滨水区<br>Pier Point Rd, Cairns City</div>
+    </div>
+
+    <div style="width:100%; height:1px; background:var(--light-line);"></div>
+
+    <div style="display:flex; flex-direction:column; gap:6px;">
+      <div style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:rgba(17,17,17,0.4);">营业时间 · Hours</div>
+      <div style="font-family:'Noto Sans SC',sans-serif; font-weight:300; font-size:14px; color:var(--black); line-height:2;">
+        <span style="font-weight:500;">周一至周日</span> &nbsp;Monday – Sunday<br>
+        午餐 Lunch &nbsp;&nbsp;11:30 – 16:30<br>
+        晚餐 Dinner &nbsp;16:30 – 21:00
+      </div>
+    </div>
+
+    <div style="width:100%; height:1px; background:var(--light-line);"></div>
+
+    <div style="display:flex; flex-direction:column; gap:6px;">
+      <div style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:rgba(17,17,17,0.4);">联系我们 · Contact</div>
+      <div style="font-family:'Barlow Condensed',sans-serif; font-weight:400; font-size:15px; letter-spacing:0.05em; color:var(--black); line-height:2;">
+        (07) 4000 0865<br>
+        @vitaliasrestaurant<br>
+        vitalias.com.au
+      </div>
+    </div>
+
+  </div>
+  <div class="cover-bottom">
+    <div></div>
+    <div class="cover-note-zh">
+      如需了解过敏原信息<br>请告知我们的工作人员
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
